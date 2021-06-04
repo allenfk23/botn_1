@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var city = ['Toronto', 'Boston', 'Mexico', 'London'];
+
+  var firstcity = 'toronto';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,10 +23,41 @@ class MyApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: <Widget>[
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: [
+
+                  OutlineButton(
+                    shape: StadiumBorder(),
+                    highlightedBorderColor: Colors.blue,
+                    child: Text('Flights'),
+                    onPressed: () {},
+                  ),
+
+                  OutlineButton(
+                    shape: StadiumBorder(),
+                    highlightedBorderColor: Colors.blue,
+                    child: Text('Hotels'),
+                    onPressed: () {},
+                  ),
+                  OutlineButton(
+                    shape: StadiumBorder(),
+                    highlightedBorderColor: Colors.blue,
+                    child: Text('Cars'),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              OutlineButton(
+                shape: StadiumBorder(),
+                highlightedBorderColor: Colors.blue,
+                child: Text('Outline Button'),
+                onPressed: () {},
+              ),
               Center(
                 child: SafeArea(
                     child: Text(
-                  'Welcome to Androit ATC',
+                  'botones FK',
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
@@ -56,9 +96,25 @@ class MyApp extends StatelessWidget {
                   "Flat Button",
                   style: TextStyle(fontSize: 20.0),
                 ),
-              )
-            ],
-          ),
+              ),
+
+            //start the code of dropdownButton//
+
+              DropdownButton<String>(
+                items: city.map((String dropDownStringItem) {
+                  return DropdownMenuItem<String>(
+                    value: dropDownStringItem,
+                    child: Text(dropDownStringItem),
+                  );
+                }).toList(),
+                onChanged: (String NewUserValue) {
+                      setState(() { 
+                        this.firstcity = NewUserValue;
+                      });
+                // here your code will execute when the user select a new item
+               },
+              ),
+            ]),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
